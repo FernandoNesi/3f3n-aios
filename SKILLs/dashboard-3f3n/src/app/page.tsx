@@ -60,8 +60,45 @@ export default async function Dashboard({
         <PageRankingTable rows={pageStats} />
       </section>
 
-      <section>
-        <CampaignTable rows={campaignStats} />
+      <section className="mt-8 flex justify-center border-t border-white/5 pt-8">
+        <button
+          id="test-buy-button"
+          className="rounded-full bg-white px-8 py-3 text-sm font-bold text-black hover:bg-neutral-200 transition-all active:scale-95"
+        >
+          Comprar
+        </button>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+          async function trackConversion() {
+            // Verifica persistência na sessão para evitar duplicidade após refresh
+            if (sessionStorage.getItem("conversion_fired")) return;
+            
+            try {
+              const response = await fetch("/api/events", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  event_name: "Lead",
+                  page_variation: "capturaA"
+                })
+              });
+              
+              if (response.ok) {
+                sessionStorage.setItem("conversion_fired", "true");
+                console.log("conversion sent and persisted in session");
+              }
+            } catch (error) {
+              console.error("Tracking Error:", error);
+            }
+          }
+          
+          const buyBtn = document.getElementById('test-buy-button');
+          if (buyBtn) {
+            buyBtn.onclick = trackConversion;
+          }
+        ` }} />
       </section>
 
       <footer className="mt-10 text-center text-xs text-muted">

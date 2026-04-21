@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     }
 
     // Validação de valores permitidos para event_name
-    const allowedEvents = ['page_view', 'cta_click', 'conversion'];
+    const allowedEvents = ['page_view', 'cta_click', 'conversion', 'Lead', 'Purchase', 'Schedule'];
     if (!allowedEvents.includes(event_name)) {
       return NextResponse.json(
         { error: `Invalid event_name. Allowed values: ${allowedEvents.join(', ')}` },
