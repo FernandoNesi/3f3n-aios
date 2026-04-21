@@ -1,82 +1,125 @@
 {
-  "skill_id": "tracking-3f3n-v1",
-  "version": "1.0.0",
+  "skill_id": "tracking-3f3n",
+  "version": "2.0.0",
   "taxonomy": "AÇÃO EM API",
   "logic": "Zero-Shot CoT + ReAct",
   "owner": "AI OS 3F3N — Squad de Performance",
   "grounding_level": "LEVEL 1 Foundation",
+
+  "description": "Tracking core reutilizável (GA4 + Meta Pixel + UTMs + A/B) para múltiplas landings (capturaA, capturaB, capturaC). Payload flat, dedup por event_id, fallback de UTMs, debug mode e conversão webhook-first.",
+
   "parameters": {
     "ga4_id": {
       "type": "string",
       "required": true,
-      "example": "G-XXXXXXXXXX",
-      "description": "ID da propriedade GA4"
+      "source": "env.GA4_ID",
+      "example": "G-XXXXXXXXXX"
     },
     "pixel_id": {
       "type": "string",
       "required": true,
-      "example": "1234567890",
-      "description": "ID do Meta Pixel"
-    },
-    "variation": {
-      "type": "enum",
-      "values": ["A", "B"],
-      "required": true,
-      "description": "Variação da Lâmina em teste para Closed-Loop Learning"
-    },
-    "archetype": {
-      "type": "string",
-      "required": true,
-      "example": "dor_cronica",
-      "description": "Arquétipo de Paciente alvo da campanha"
+      "source": "env.PIXEL_ID",
+      "example": "0000000000000000"
     },
     "webhook_url": {
       "type": "url",
       "required": true,
-      "example": "https://n8n.3f3n.io/webhook/lead-capture",
-      "description": "Endpoint n8n para disparo server-side"
+      "source": "env.WEBHOOK_URL",
+      "description": "Endpoint n8n que espelha para GA4 MP + Meta CAPI"
     },
-    "utm_ttl_days": {
+    "page_variation": {
+      "type": "string",
+      "required": true,
+      "enum_suggested": ["capturaA", "capturaB", "capturaC"],
+      "description": "Identificador da landing/variação em teste. Usado em TODO evento."
+    },
+    "ttl_days": {
       "type": "integer",
       "required": false,
       "default": 30,
-      "description": "TTL da persistência de UTMs em localStorage"
+      "source": "env.UTM_TTL_DAYS"
+    },
+    "debug": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "sources": ["env.TRACKING_DEBUG", "window.TRACKING_DEBUG", "?debug_tracking=1"]
     }
   },
+
+  "event_contract": {
+    "description": "Padrão flat OBRIGATÓRIO em todo evento (client + server).",
+    "mandatory_fields": [
+      "event_name",
+      "event_id",
+      "page_variation",
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_content"
+    ],
+    "auto_fields": [
+      "utm_term",
+      "page_path",
+      "page_url",
+      "session_id",
+      "timestamp",
+      "fbp",
+      "fbc"
+    ],
+    "utm_fallback": {
+      "utm_source": "direct",
+      "utm_medium": "none",
+      "utm_campaign": "organic",
+      "utm_content": "none",
+      "utm_term": "none"
+    }
+  },
+
   "constraints": [
-    "Scripts devem ser async ou defer",
-    "Não bloquear o render principal (LCP < 2.5s)",
-    "Persistir UTMs em localStorage por utm_ttl_days",
-    "Disparar 'conversion' apenas no sucesso do webhook n8n",
-    "Payload server-side inclui variation e archetype obrigatoriamente",
-    "Nomes de eventos seguem Meta Standard Events + GA4 Recommended Events"
+    "Scripts devem ser async ou defer (LCP < 2.5s)",
+    "Payload é sempre FLAT (GA4/Pixel rejeitam objetos aninhados)",
+    "Todo evento carrega page_variation + 4 UTMs principais",
+    "UTMs ausentes recebem fallback — nunca enviar campo vazio",
+    "event_id UUID compartilhado entre client e CAPI (dedup)",
+    "Conversão webhook-first: client mirror só após 200 OK do n8n",
+    "Fire-once guard em eventos marcados com { once: true }",
+    "init() é idempotente — chamadas duplicadas são ignoradas"
   ],
+
+  "public_api": {
+    "Tracking3F3N.init(config)": "Inicializa o tracking (idempotente)",
+    "Tracking3F3N.track(name, extra?, {once?, dedupKey?})": "Eventos não-conversão",
+    "Tracking3F3N.conversion(name, extra?, {dedupKey?})": "Conversão webhook-first (Promise)",
+    "Tracking3F3N._debug()": "Snapshot do estado interno (debug)"
+  },
+
   "outputs": {
-    "snippet_html": "Bloco <head> pronto para colar",
-    "n8n_payload": "Schema JSON do webhook server-side",
-    "validation_report": "Checklist 3 Vetores + LCP projetado"
+    "snippet_init": "references/tracking-init-example.html",
+    "core_script": "references/tracking-core.js",
+    "env_template": ".env.example"
   },
-  "closed_loop_contract": {
-    "event_schema": {
-      "event_name": "string (Meta Standard)",
-      "timestamp": "ISO-8601",
-      "variation": "A | B",
-      "archetype": "string",
-      "utms": {
-        "source": "string",
-        "medium": "string",
-        "campaign": "string",
-        "content": "string",
-        "term": "string"
-      },
-      "page": "string",
-      "session_id": "uuid"
-    }
-  },
+
   "references": [
-    "references/utm-persistence.js",
+    "references/tracking-core.js",
+    "references/tracking-init-example.html",
     "references/ga4-measurement-protocol.md",
     "references/meta-pixel-events.md",
     "references/neurodesign-lcp-checklist.md"
+  ],
+
+  "changelog": [
+    { "version": "2.0.0", "changes": [
+      "Renomeado utm-persistence.js → tracking-core.js (SRP)",
+      "Payload flat com 4 UTMs + page_variation em todo evento",
+      "Fallback automático de UTMs (direct/none/organic)",
+      "event_id UUID para dedup client+CAPI",
+      "Fire-once guard (anti duplo-clique)",
+      "Debug mode (?debug_tracking=1 ou window.TRACKING_DEBUG)",
+      "init() idempotente com guard de dupla inicialização",
+      "Release de dedup lock em falha de webhook (permite retry)",
+      "Captura automática de cookies _fbp/_fbc para CAPI"
+    ]},
+    { "version": "1.0.0", "changes": ["Versão inicial"] }
   ]
 }

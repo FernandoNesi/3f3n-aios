@@ -22,11 +22,11 @@ fbq('track', 'PageView');
 
 | Meta Standard Event | Gatilho 3F3N | Custom Data Obrigatório |
 |---------------------|--------------|------------------------|
-| `PageView` | Carregamento da landing | — |
-| `ViewContent` | Scroll ≥ 50% na oferta | `content_name`, `variation`, `archetype` |
-| `Lead` | Webhook n8n OK (form submit) | `variation`, `archetype`, `value` |
-| `Schedule` | Agendamento confirmado | `variation`, `archetype` |
-| `Purchase` | Pagamento confirmado | `value`, `currency`, `variation`, `archetype` |
+| `PageView` | Carregamento da landing | `page_variation`, `utm_*` |
+| `ViewContent` | Scroll ≥ 50% na oferta | `content_name`, `page_variation`, `utm_*` |
+| `Lead` | Webhook n8n OK (form submit) | `page_variation`, `utm_*`, `value` |
+| `Schedule` | Agendamento confirmado | `page_variation`, `utm_*` |
+| `Purchase` | Pagamento confirmado | `value`, `currency`, `page_variation`, `utm_*` |
 
 ## Exemplo Client-Side
 
@@ -67,10 +67,11 @@ Payload:
         "fbp": "{{ $json.fbp_cookie }}"
       },
       "custom_data": {
-        "variation": "{{ $json.variation }}",
-        "archetype": "{{ $json.archetype }}",
-        "utm_source": "{{ $json.utms.utm_source }}",
-        "utm_campaign": "{{ $json.utms.utm_campaign }}",
+        "page_variation": "{{ $json.page_variation }}",
+        "utm_source": "{{ $json.utm_source }}",
+        "utm_medium": "{{ $json.utm_medium }}",
+        "utm_campaign": "{{ $json.utm_campaign }}",
+        "utm_content": "{{ $json.utm_content }}",
         "value": "{{ $json.value }}",
         "currency": "BRL"
       }

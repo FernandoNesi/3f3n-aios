@@ -24,12 +24,12 @@ POST https://www.google-analytics.com/mp/collect
     {
       "name": "generate_lead",
       "params": {
-        "variation": "{{ $json.variation }}",
-        "archetype": "{{ $json.archetype }}",
-        "utm_source": "{{ $json.utms.utm_source }}",
-        "utm_medium": "{{ $json.utms.utm_medium }}",
-        "utm_campaign": "{{ $json.utms.utm_campaign }}",
-        "utm_content": "{{ $json.utms.utm_content }}",
+        "event_id": "{{ $json.event_id }}",
+        "page_variation": "{{ $json.page_variation }}",
+        "utm_source": "{{ $json.utm_source }}",
+        "utm_medium": "{{ $json.utm_medium }}",
+        "utm_campaign": "{{ $json.utm_campaign }}",
+        "utm_content": "{{ $json.utm_content }}",
         "value": "{{ $json.value || 0 }}",
         "currency": "BRL",
         "engagement_time_msec": 100,
@@ -42,21 +42,22 @@ POST https://www.google-analytics.com/mp/collect
 
 ## Eventos Recomendados GA4 × 3F3N
 
-| Evento GA4 | Quando disparar | Dimensão de Closed-Loop |
-|------------|-----------------|-------------------------|
-| `page_view` | Entrada na landing | variation, archetype |
-| `view_item` | Abriu modal da oferta | variation, archetype |
-| `generate_lead` | Webhook n8n OK | variation, archetype, utms |
-| `begin_checkout` | Iniciou agendamento | variation, archetype |
-| `purchase` | Pagamento confirmado | variation, archetype, value |
+| Evento GA4 | Quando disparar | Dimensões obrigatórias |
+|------------|-----------------|-----------------------|
+| `page_view` | Entrada na landing | page_variation, utm_* |
+| `view_item` | Abriu modal da oferta | page_variation, utm_* |
+| `generate_lead` | Webhook n8n OK | page_variation, utm_*, event_id |
+| `begin_checkout` | Iniciou agendamento | page_variation, utm_* |
+| `purchase` | Pagamento confirmado | page_variation, utm_*, value, event_id |
 
 ## Custom Dimensions (configurar no GA4)
 
-Em **Admin → Custom Definitions → Create custom dimension**:
+Em **Admin → Custom Definitions → Create custom dimension** — scope: **Event**:
 
-1. `variation` — scope: Event
-2. `archetype` — scope: Event
-3. `session_id` — scope: Event
+1. `page_variation`
+2. `event_id`
+3. `session_id`
+4. `utm_content` (as 4 principais já entram como default; `utm_content` costuma precisar de custom dim para aparecer em relatórios)
 
 Sem isso, os parâmetros chegam mas não são consultáveis em relatórios.
 
