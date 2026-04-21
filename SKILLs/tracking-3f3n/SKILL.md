@@ -1,114 +1,154 @@
 ---
 name: tracking-3f3n
-description: Tracking core reutilizável para landings 3F3N (capturaA, capturaB, capturaC). Instrumenta GA4 + Meta Pixel + UTMs + A/B tests com payload flat padronizado, dedup por event_id, fallback de UTMs, debug mode e conversão webhook-first. Use quando precisar instrumentar uma nova landing, revisar tracking existente, ou garantir que eventos alimentem corretamente o Closed-Loop Learning do Squad.
+description: Tracking core production-ready v3.0.0 para landings 3F3N (capturaA/B/C/…). Uso em 1 linha — `initTracking({ page })`. Payload flat validado, dedup inteligente com TTL, safe retry com backoff, storage 3-tier, _fbp/_fbc automáticos, logs JSON estruturados. Use quando precisar instrumentar uma landing nova, auditar tracking existente, ou padronizar telemetria entre múltiplos funis.
 ---
 
-# Skill de Tracking 3F3N — Engenheiro de Atribuição
+# Skill de Tracking 3F3N — Production-Ready
 
 ## Persona
 
-Você é **Engenheiro de Dados e Especialista em Atribuição da 3F3N**. Você não gera código de tracking pontual; você entrega um **core reutilizável** que funciona identicamente em capturaA, capturaB, capturaC e qualquer landing futura, trocando apenas uma variável (`page_variation`).
+Você é **Engenheiro de Dados Sênior** responsável pela telemetria 3F3N. Sua entrega é um padrão único, reutilizável em qualquer landing com **uma única linha** de bootstrap, resistente a falhas de rede, ITP, duplo-clique e payload malformado.
+
+## Uso (1 linha)
+
+```js
+initTracking({ page: 'capturaA' });
+```
+
+Isso:
+- Lê `GA4_ID`, `PIXEL_ID`, `WEBHOOK_URL` de `window.__ENV__`
+- Captura/persiste UTMs (30d, com fallback)
+- Garante cookies `_fbp`/`_fbc` (sintetizando se necessário)
+- Dispara `page_view` automático (dedup `once`)
+- Deixa `Tracking3F3N.track()` / `.conversion()` prontos para uso
+
+Único valor que muda entre capturaA/B/C: o `page`.
 
 ## Regra de Ouro
 
 > "O que não pode ser medido, não pode ser otimizado pelo AI OS."
 
-Todo script é `async`/`defer`. Payload é sempre **flat**. `page_variation` + 4 UTMs estão em **todo** evento.
+Payload sempre **flat**. Sempre validado antes do disparo. Nunca perde lead por falha transiente de rede.
 
-## Arquitetura dos 3 Vetores
+## Padrão de Evento (OBRIGATÓRIO, VALIDADO)
 
-1. **Vetor Técnico** — Scripts não-bloqueantes (LCP < 2.5s, TBT < 200ms).
-2. **Vetor de Negócio** — Atribuição completa (UTMs com fallback) para ROAS/CAC.
-3. **Vetor de Inteligência** — `page_variation` em todo evento alimenta o Closed-Loop.
+```js
+{
+  event_name:     "Lead",
+  page_variation: "capturaA",
+  utm_source:     "facebook",   // fallback: "direct"
+  utm_medium:     "cpc",        // fallback: "none"
+  utm_campaign:   "dor-cronica",// fallback: "organic"
+  utm_content:    "criativo-3", // fallback: "none"
+  event_id:       "uuid-...",   // dedup client↔CAPI
+  timestamp:      "2026-04-21T12:34:56.789Z"
+}
+// + auto: utm_term, page_path, page_url, session_id, fbp, fbc
+```
 
-## Padrão de Evento (OBRIGATÓRIO)
+Campo ausente → `INVALID_PAYLOAD` antes de chegar no GA4/Pixel.
 
-Todo evento — client ou server-side — carrega no mínimo:
+## Hardening Aplicado (v3.0.0)
 
-| Campo | Origem | Obrigatório |
-|-------|--------|-------------|
-| `event_name` | caller | ✅ |
-| `event_id` | UUID gerado pelo core (dedup client↔CAPI) | ✅ |
-| `page_variation` | `init({page_variation})` | ✅ |
-| `utm_source` | URL ou localStorage ou fallback `direct` | ✅ |
-| `utm_medium` | URL ou localStorage ou fallback `none` | ✅ |
-| `utm_campaign` | URL ou localStorage ou fallback `organic` | ✅ |
-| `utm_content` | URL ou localStorage ou fallback `none` | ✅ |
-| `utm_term` | auto | ➕ |
-| `session_id`, `page_path`, `page_url`, `timestamp`, `fbp`, `fbc` | auto | ➕ |
-
-**Payload é FLAT.** Nunca aninhar `utms: {...}` — GA4 e Pixel descartam silenciosamente.
+| Categoria | Mecanismo |
+|---|---|
+| **Validação** | `validatePayload()` dispara `INVALID_PAYLOAD` com lista `missing[]` |
+| **Dedup duplo-clique** | Lock TTL 3s por `event_name` |
+| **Dedup permanente** | `{ once: true }` → TTL 365d |
+| **Retry safe** | 3 tentativas, backoff exponencial (500/1000/2000ms), não retenta 4xx |
+| **Lock release em falha** | Usuário pode clicar de novo após falha de webhook |
+| **Storage 3-tier** | localStorage → sessionStorage → in-memory (sobrevive ITP/anônimo) |
+| **_fbp sintético** | Gera `fb.1.{ts}.{rand}` e grava cookie 90d quando ausente |
+| **_fbc derivado** | Captura `?fbclid` → `_fbc` automaticamente |
+| **UTM fallback** | `direct`/`none`/`organic` — nunca envia campo vazio |
+| **Logs estruturados** | JSON `{ ts, src, v, level, event, data }` — grep/Datadog-friendly |
+| **init idempotente** | Segunda chamada é ignorada com log |
+| **Auto page_view** | Disparado no `init` com `once` (configurável via `auto_page_view: false`) |
 
 ## Public API
 
 ```js
-Tracking3F3N.init({
-  ga4_id, pixel_id, webhook_url,   // de window.__ENV__
-  page_variation,                   // 'capturaA' | 'capturaB' | 'capturaC'
-  ttl_days: 30
-});
+// 1. Facade 1-linha (recomendado)
+initTracking({ page: 'capturaA' });
 
-// Eventos não-conversão — fire-and-forget client-side
-Tracking3F3N.track('page_view', {}, { once: true });
-Tracking3F3N.track('scroll_50', {}, { once: true });
+// 2. API completa (config explícito)
+Tracking3F3N.init({ ga4_id, pixel_id, webhook_url, page_variation, ttl_days, retry });
+
+// 3. Eventos de engajamento (dedup 3s por padrão)
 Tracking3F3N.track('view_content', { content_name: 'oferta-x' });
+Tracking3F3N.track('scroll_50', {}, { once: true });
 
-// Conversão — webhook-first, client mirror só após 200 OK
+// 4. Conversão — webhook-first com retry, Promise
 await Tracking3F3N.conversion('Lead', { value: 150, currency: 'BRL' });
+
+// 5. Debug
+Tracking3F3N._debug();  // { initialized, config, utms, sessionId, dedup }
+Tracking3F3N.reset();   // limpa dedup map
 ```
 
-## Fluxo de Execução (ReAct)
+## Debug Mode
 
-Quando invocada para instrumentar uma landing:
+Ative de 3 formas:
+- URL: `?debug_tracking=1`
+- Global: `window.TRACKING_DEBUG = true`
+- `.env`: `TRACKING_DEBUG=true`
 
-1. **Reason** — Confirme `page_variation`, IDs GA4/Pixel, URL do webhook n8n.
-2. **Ground** — Consulte `references/tracking-core.js`, `references/ga4-measurement-protocol.md`, `references/meta-pixel-events.md`, `references/neurodesign-lcp-checklist.md`.
-3. **Act** — Copie `references/tracking-init-example.html` para o `<head>` da página, ajuste `page_variation`. Use `.env.example` como contrato de variáveis.
-4. **Validate** — Rode o checklist (seção final deste arquivo).
+Todos os logs saem em JSON:
 
-## Parâmetros (via `.env`)
+```json
+{"ts":"2026-04-21T...","src":"3F3N-Tracking","v":"3.0.0","level":"INFO","event":"conversion_fired","data":{"eventName":"Lead","event_id":"..."}}
+```
 
-Ver `.env.example`. Nunca hardcodear IDs no HTML — sempre via `window.__ENV__` injetado pelo build.
-
-## Constraints Não-Negociáveis
+## Constraints (não-negociáveis)
 
 - ❌ Payload aninhado
-- ❌ Conversão antes do OK do backend
-- ❌ Evento sem `page_variation` ou sem as 4 UTMs obrigatórias
-- ❌ IDs hardcoded na página
-- ❌ Fire-and-forget em eventos de receita
-- ✅ Scripts `async`/`defer`
-- ✅ `event_id` UUID compartilhado client↔CAPI
-- ✅ Fallback de UTMs (`direct`/`none`/`organic`)
-- ✅ `init()` idempotente
-- ✅ Debug mode observável via `?debug_tracking=1`
+- ❌ Evento sem validação prévia
+- ❌ Conversão sem retry
+- ❌ IDs hardcoded no HTML
+- ✅ `initTracking({ page })` é a ÚNICA linha de bootstrap por landing
+- ✅ Todo evento carrega os 8 campos obrigatórios
+- ✅ 4xx não retenta; 5xx retenta com backoff
+- ✅ Falha libera lock para retry manual
 
-## Anti-padrões
+## Checklist de Validação (production)
 
-- Duplicar lógica de captura de UTM em cada página
-- Disparar `Lead` no `onclick` sem aguardar webhook
-- Omitir `event_id` → CAPI conta Lead em dobro
-- Chamar `init()` em múltiplos scripts sem guard (corrompe estado)
-- Deixar tracking quebrar silenciosamente em produção (sem debug mode)
+**Sanidade**
+- [ ] `.env` preenchido; zero IDs hardcoded
+- [ ] `initTracking({ page: '...' })` é a única linha nova por landing
+- [ ] `page` difere entre capturaA/B/C
 
-## Checklist de Validação (antes de subir)
+**Debug**
+- [ ] `?debug_tracking=1` imprime log JSON com `initialized: true`
+- [ ] `Tracking3F3N._debug()` mostra 8 campos preenchidos
+- [ ] Payload malformado retorna `INVALID_PAYLOAD` com `missing[]`
 
-- [ ] `page_variation` correto na página (`capturaA`/`B`/`C`)
-- [ ] `.env` preenchido com `GA4_ID`, `PIXEL_ID`, `WEBHOOK_URL`
-- [ ] `?debug_tracking=1` mostra payload flat com 4 UTMs + `page_variation`
-- [ ] GA4 DebugView recebe `page_view` com `page_variation`
-- [ ] Meta Events Manager (Test Events) recebe `Lead` com `event_id`
-- [ ] n8n log mostra payload idêntico ao client-side
-- [ ] UTMs persistem após SPA navigation (localStorage 30d)
-- [ ] Lead orgânico aparece com `utm_source=direct`, não vazio
-- [ ] Duplo-clique no CTA dispara apenas 1 conversão
-- [ ] PageSpeed mobile: LCP < 2.5s, TBT < 200ms
+**GA4**
+- [ ] DebugView recebe `page_view` automático
+- [ ] Custom dimensions `page_variation`, `event_id`, `session_id` populadas
+- [ ] Lead chega com 4 UTMs mesmo em tráfego direto (`direct/none/organic/none`)
+
+**Meta**
+- [ ] Events Manager: client + CAPI com **mesmo `event_id`** (dedup OK)
+- [ ] `_fbp` presente mesmo no primeiro touch (cookie sintético)
+- [ ] Link com `?fbclid=` gera `_fbc` automaticamente
+
+**Resiliência**
+- [ ] Webhook 500 → 3 tentativas com backoff exponencial
+- [ ] Webhook 400 → falha imediata (sem retry)
+- [ ] Duplo-clique em 3s → 1 evento
+- [ ] Falha de webhook libera lock → clique seguinte funciona
+- [ ] Safari anônimo: UTMs ainda funcionam (fallback sessionStorage/memória)
+
+**Performance**
+- [ ] Lighthouse mobile: LCP < 2.5s, TBT < 200ms
+- [ ] `tracking-core.js` < 8KB gzipped
+- [ ] Nenhum bloqueio do render principal
 
 ## Referências
 
-- `references/tracking-core.js` — Engine do sistema
-- `references/tracking-init-example.html` — Snippet de bootstrap por landing
-- `references/ga4-measurement-protocol.md` — Server-side GA4 (n8n)
+- `references/tracking-core.js` — Engine v3.0.0
+- `references/tracking-init-example.html` — Snippet de bootstrap (1 linha)
+- `references/ga4-measurement-protocol.md` — Server-side GA4 via n8n
 - `references/meta-pixel-events.md` — Pixel + CAPI + deduplicação
 - `references/neurodesign-lcp-checklist.md` — Orçamento de performance
 - `.env.example` — Contrato de variáveis

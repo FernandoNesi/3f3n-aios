@@ -1,39 +1,41 @@
 <!--
-  3F3N Tracking — Snippet Padrão de Inicialização
-  Cole no <head> de capturaA.html / capturaB.html / capturaC.html
-  Trocando APENAS o valor de `page_variation`.
+  3F3N Tracking — Snippet de Inicialização (production-ready v3.0.0)
+  Cole no <head> de capturaA.html / capturaB.html / capturaC.html.
+
+  ⚠️  Única linha que muda entre landings:
+
+       initTracking({ page: 'capturaA' });
 -->
 
-<!-- 1. Consent Mode v2 (síncrono — antes de qualquer pixel) -->
+<!-- 1. Consent Mode v2 (síncrono, antes de tudo) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', {
-    'ad_storage':       'denied',
-    'analytics_storage':'denied',
-    'ad_user_data':     'denied',
-    'ad_personalization':'denied',
-    'wait_for_update':  500
+    ad_storage: 'denied', analytics_storage: 'denied',
+    ad_user_data: 'denied', ad_personalization: 'denied',
+    wait_for_update: 500
   });
 </script>
 
-<!-- 2. Env vars injetadas pelo build (Vite/Next/etc) -->
+<!-- 2. Variáveis do build (.env → __ENV__) -->
 <script>
   window.__ENV__ = {
     GA4_ID:      '%VITE_GA4_ID%',
     PIXEL_ID:    '%VITE_PIXEL_ID%',
-    WEBHOOK_URL: '%VITE_WEBHOOK_URL%'
+    WEBHOOK_URL: '%VITE_WEBHOOK_URL%',
+    UTM_TTL_DAYS: 30
   };
 </script>
 
-<!-- 3. GA4 base (async) -->
+<!-- 3. GA4 base -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA4_ID%"></script>
 <script>
   gtag('js', new Date());
   gtag('config', window.__ENV__.GA4_ID, { send_page_view: false });
 </script>
 
-<!-- 4. Meta Pixel base (async, injetado pelo snippet) -->
+<!-- 4. Meta Pixel base -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -43,50 +45,43 @@
   fbq('init', window.__ENV__.PIXEL_ID);
 </script>
 
-<!-- 5. Tracking Core 3F3N (defer) -->
+<!-- 5. Tracking Core 3F3N -->
 <script defer src="/js/tracking-core.js"></script>
 
-<!-- 6. Bootstrap — única coisa que muda entre capturaA/B/C: page_variation -->
+<!-- 6. ÚNICA LINHA DE BOOTSTRAP — mudar só o `page` em cada landing -->
 <script>
   window.addEventListener('load', function () {
-    Tracking3F3N.init({
-      ga4_id:         window.__ENV__.GA4_ID,
-      pixel_id:       window.__ENV__.PIXEL_ID,
-      webhook_url:    window.__ENV__.WEBHOOK_URL,
-      page_variation: 'capturaA', // ← TROCAR POR PÁGINA: capturaA | capturaB | capturaC
-      ttl_days:       30
-    });
-
-    // Page view com dedup (não dispara 2× em SPAs que re-executam o handler)
-    Tracking3F3N.track('page_view', {}, { once: true });
+    initTracking({ page: 'capturaA' });
   });
 </script>
 
 <!--
-  Como disparar eventos nas páginas:
+  ─── Disparo de eventos nas páginas ────────────────────────────────────
 
-  // Scroll milestone (dedup por sessão)
-  Tracking3F3N.track('scroll_50', {}, { once: true });
-
-  // View content (modal da oferta abriu)
+  // Eventos de engajamento (dedup automático por evento, TTL 3s)
   Tracking3F3N.track('view_content', { content_name: 'oferta-dor-cronica' });
 
-  // CONVERSÃO — webhook-first, client mirrors só depois do 200 OK
+  // Uma vez por sessão
+  Tracking3F3N.track('scroll_50', {}, { once: true });
+
+  // CONVERSÃO — webhook-first com retry automático; mirrors só após 200 OK
   document.getElementById('form-lead').addEventListener('submit', async (ev) => {
     ev.preventDefault();
-    const data = new FormData(ev.target);
     try {
       await Tracking3F3N.conversion('Lead', {
         value: 150.00,
         currency: 'BRL',
         content_name: 'lead-dor-cronica',
-        email_hash: null,   // hash server-side no n8n
         lead_id: crypto.randomUUID()
       });
       window.location.href = '/obrigado';
     } catch (err) {
-      console.error('Conversão falhou', err);
-      // mostrar erro para o usuário
+      // Lock foi liberado — usuário pode clicar de novo.
+      alert('Falha temporária, tente novamente.');
     }
   });
+
+  // Introspecção / debug
+  Tracking3F3N._debug();     // snapshot do estado
+  Tracking3F3N.reset();      // limpa dedup (útil em dev)
 -->
