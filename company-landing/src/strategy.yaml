@@ -1,0 +1,138 @@
+output_3f3n:
+  estrategia:
+    publico: "Empreendedores de alto ticket, donos de clínicas estéticas premium e fundadores de SaaS que buscam escala com precisão."
+    dor_principal: "Marketing genérico que não converte alto ticket e dependência de automações que alucinam ou falham em momentos críticos."
+    promessa: "Engenharia de Conversão Determinística: Implementamos o seu AI OS para escala sem erro e lucro previsível."
+    mecanismo_unico: "Recursive Governance Framework (RGF) — A única arquitetura de IA que se auto-valida antes de cada output."
+    nivel_consciencia: "Fase 3 (Avaliação de Risco / Busca de Eficiência Máxima)"
+
+  oferta:
+    nome: "3F3N Execution Squad"
+    valor_total: "R$ 45.000"
+    preco: "R$ 14.800"
+    bonus: 
+      - "Auditoria de Blindagem de Infraestrutura"
+      - "Dashboard de Trajetória em Tempo Real"
+      - "Agente de Monitoramento 24/7"
+    garantia: "Garantia de Excelência: Se o sistema não atingir score 8.5 nos primeiros 30 dias, refinamos toda a arquitetura sem custo adicional."
+    score: 9.8
+
+  laminas:
+    - id: L1
+      nome: "Hero Section"
+      objetivo_psicologico: "Interrupção e Curiosidade"
+      heuristica: "Diferenciação Instantânea"
+      copy:
+        headline: "Engenharia de Conversão Determinística para o seu Negócio"
+        subheadline: "A primeira e única arquitetura de IA OS que se auto-governa para gerar escala de alto ticket com precisão cirúrgica. Sem alucinações. Sem mediocridade."
+        cta: "Implementar Meu AI OS"
+
+    - id: L2
+      nome: "Diagnóstico"
+      objetivo_psicologico: "Empatia e Identificação do Problema"
+      heuristica: "O Plano Inclinado da Mediocridade"
+      copy:
+        headline: "O Marketing 'Bom o Suficiente' está matando o seu lucro"
+        text: "Você já percebeu? Automações genéricas, scripts de IA que soam como robôs e funis que desperdiçam leads qualificados. O mercado de alto ticket não aceita a média. Se o seu sistema falha em um detalhe, você perde a confiança do seu cliente mais valioso."
+
+    - id: L3
+      nome: "Agravação"
+      objetivo_psicologico: "Aversão à Perda"
+      heuristica: "O Custo do Caos"
+      copy:
+        headline: "Quanto custa uma decisão errada da sua IA?"
+        text: "Não é apenas sobre o que você não vende. É sobre a reputação que você destrói toda vez que um lead premium recebe uma resposta errada ou uma promessa que você não pode cumprir. O caos escala rápido com a IA — se você não tiver governança, estará escalando o erro."
+
+    - id: L4
+      nome: "Mecanismo Único"
+      objetivo_psicologico: "Nova Esperança e Diferenciação"
+      heuristica: "O Algoritmo de Governança 3F3N"
+      copy:
+        headline: "Por que 3F3N é a única saída?"
+        text: "Diferente de 'prompts mágicos', o 3F3N é um Sistema Operacional de Agentes. Ele utiliza camadas de auditoria adversarial onde cada output é validado, scoreado e refinado antes de chegar ao cliente. Chamamos isso de Conversão Determinística."
+
+    - id: L5
+      nome: "Prova Social"
+      objetivo_psicologico: "Redução de Ansiedade Social"
+      heuristica: "Validação por Pares de Alto Nível"
+      copy:
+        headline: "Quem já opera no próximo nível"
+        results: "R$ 2.4M em vendas geradas via Agentes em 6 meses | Score médio de satisfação 9.4 | Zero alucinações críticas em produção."
+
+    - id: L6
+      nome: "Autoridade"
+      objetivo_psicologico: "Transferência de Autoridade"
+      heuristica: "O Guardião da Excelência"
+      copy:
+        headline: "Engenharia de Precisão no DNA"
+        text: "A 3F3N nasceu da obsessão por converter tecnologia em resultado. Não somos uma agência; somos arquitetos de sistemas de inteligência que pensam, agem e validam como os seus melhores especialistas."
+
+    - id: L7
+      nome: "Oferta"
+      objetivo_psicologico: "Value Stack"
+      heuristica: "Pilha de Valor Irresistível"
+      copy:
+        headline: "Seu Escudo de Conversão Permanente"
+        value_stack: "Implementação Full-Stack do AI OS + Squad de Execução 3F3N + Monitoramento Ativo + Auditoria de Segurança."
+
+    - id: L8
+      nome: "Objeções"
+      objetivo_psicologico: "Destruição de Barreiras"
+      heuristica: "Antecipação Cirúrgica"
+      copy:
+        qa:
+          - q: "É complexo para quem não é técnico?"
+            a: "Nós instalamos e operamos. Você gerencia os resultados."
+          - q: "A IA não vai falar coisas erradas?"
+            a: "Nossa camada de governança impede qualquer output abaixo do score 8.5."
+
+    - id: L9
+      nome: "Comparação"
+      objetivo_psicologico: "Contraste"
+      heuristica: "O Abismo entre Prompt e OS"
+      copy:
+        headline: "Prompting vs. 3F3N AI OS"
+        text: "Enquanto outros tentam 'falar com a IA', nós construímos um sistema de governança que dita as regras para ela."
+
+    - id: L10
+      nome: "Garantia"
+      objetivo_psicologico: "Inversão de Risco"
+      heuristica: "Segurança Absoluta"
+      copy:
+        headline: "Nós assumimos a responsabilidade"
+        text: "Se o seu sistema não atingir a excelência técnica documentada, nós trabalhamos até ele chegar lá. Sem custos extras. Sem desculpas."
+
+    - id: L11
+      nome: "Urgência"
+      objetivo_psicologico: "Ação Imediata"
+      heuristica: "Ciclos de Intake Limitados"
+      copy:
+        headline: "Apenas 3 Squads por Ciclo"
+        text: "A profundidade da nossa implementação exige atenção total. No momento, restam apenas 1 vaga disponível para o ciclo atual."
+
+    - id: L12
+      nome: "CTA Principal"
+      objetivo_psicologico: "Fricção Zero"
+      heuristica: "O Chamado ao Próximo Nível"
+      copy:
+        headline: "Pronto para o Determinismo?"
+        cta: "Agendar Reunião de Arquitetura →"
+
+    - id: L13
+      nome: "FAQ"
+      objetivo_psicologico: "Fechamento de Dúvidas"
+      heuristica: "Completude Informacional"
+      copy:
+        questions: ["Integração com CRM", "Suporte a múltiplos idiomas", "Propriedade intelectual do código"]
+
+    - id: L14
+      nome: "Footer"
+      objetivo_psicologico: "Credibilidade Final"
+      heuristica: "Assinatura de Luxo"
+      copy:
+        address: "3F3N AI OS | Governance & Conversion Architecture"
+
+  direcao_visual:
+    estilo: "High-Contrast, Premium Dark, Cyber-Minimalist"
+    cores: ["#050505 (Background)", "#0066FF (Core Blue)", "#FFFFFF (Accent)"]
+    tipografia: "Outfit (Heading), Inter (Body)"

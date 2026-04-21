@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>A Nova Economia da IA — Accelera 360</title>
+<meta content="O modelo por trás de quem está faturando R$100K+/mês com uma infraestrutura de IA proprietária." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="assets/css2_455697943e35.css" rel="stylesheet"/>
+<link href="assets/styles_4a281646bb55.css" rel="stylesheet"/>
+<!-- Meta Pixel Code -->
+<script async="" src="assets/1394066375041870_8ef24fa0f3c7"></script><script async="" src="assets/fbevents_a024cb24f300.js"></script><script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1394066375041870');
+  fbq('track', 'PageView');
+  </script>
+<noscript><img height="1" src="https://www.facebook.com/tr?id=1394066375041870&amp;ev=PageView&amp;noscript=1" style="display:none" width="1"/></noscript>
+<!-- End Meta Pixel Code -->
+<style data-scroll-fix="true">
+        /* Scroll fixes for offline viewing */
+        html, body {
+            overflow: auto !important;
+            overflow-x: hidden !important;
+            height: auto !important;
+            min-height: 100% !important;
+            scroll-behavior: auto !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* Force visibility - many sites use JS animations for initial display */
+        body, .wrapper, main, #__next, #app, .page, .content {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+        
+        /* Disable loader/preloader overlays */
+        .loader, .preloader, .loading, [class*="loader"], [class*="preloader"] {
+            display: none !important;
+            opacity: 0 !important;
+        }
+        
+        /* Show elements that might be hidden for animation */
+        .word-inner, .char, .line, [data-aos], [data-scroll],
+        .hero-text span, .hero-fade, [class*="hero"] span {
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
+        }
+        
+        /* Reset Tailwind animation utility classes */
+        .translate-y-full, .translate-x-full, .-translate-y-full, .-translate-x-full,
+        .translate-y-1\/2, .-translate-y-1\/2, .translate-y-\[100\%\], .translate-y-\[110\%\] {
+            transform: none !important;
+        }
+        
+        /* Force visibility on common hidden-for-animation patterns */
+        .opacity-0, [class*="opacity-0"] {
+            opacity: 1 !important;
+        }
+        
+        /* Reset scale transforms used for animations */
+        .scale-0, .scale-50, .scale-75 {
+            transform: none !important;
+        }
+        
+        html.lenis, html.lenis-smooth, 
+        body.lenis, body.lenis-smooth,
+        .lenis-wrapper, .lenis-content,
+        [data-lenis-prevent], [data-scroll-container] {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        
+        /* Fix flex containers that might cut off content */
+        body.flex.items-center,
+        body.flex.justify-center {
+            align-items: flex-start !important;
+            min-height: 100vh;
+            height: auto !important;
+        }
+        
+        /* Ensure main content scrolls */
+        main, #__next, #__nuxt, #app, .main-content {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        </style></head>
+<body>
+<!-- ===== HERO ===== -->
+<section class="hero hero-b">
+<!-- Hero background layers -->
+<canvas height="1433" id="particles" width="1920"></canvas>
+<!-- 3D Globe -->
+<div class="hero-globe">
+<svg class="globe-svg" viewbox="0 0 800 800">
+<defs>
+<radialgradient cx="50%" cy="50%" id="gCore" r="50%">
+<stop offset="0%" stop-color="#1065E3" stop-opacity=".08"></stop>
+<stop offset="40%" stop-color="#1065E3" stop-opacity=".03"></stop>
+<stop offset="100%" stop-color="#1065E3" stop-opacity="0"></stop>
+</radialgradient>
+</defs>
+<!-- Core glow -->
+<circle cx="400" cy="400" fill="url(#gCore)" r="380"></circle>
+<!-- Main sphere -->
+<circle cx="400" cy="400" fill="none" r="320" stroke="rgba(160,180,220,.08)" stroke-width="1.5"></circle>
+<!-- Meridians (vertical) — dense -->
+<g class="globe-meridians">
+<ellipse cx="400" cy="400" fill="none" rx="20" ry="320" stroke="rgba(160,180,220,.07)" stroke-width="1.2"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="80" ry="320" stroke="rgba(160,180,220,.07)" stroke-width="1.2"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="140" ry="320" stroke="rgba(160,180,220,.06)" stroke-width="1"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="200" ry="320" stroke="rgba(160,180,220,.06)" stroke-width="1"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="260" ry="320" stroke="rgba(160,180,220,.05)" stroke-width=".8"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="300" ry="320" stroke="rgba(160,180,220,.04)" stroke-width=".8"></ellipse>
+</g>
+<!-- Parallels (horizontal) — dense -->
+<g class="globe-parallels">
+<ellipse cx="400" cy="400" fill="none" rx="320" ry="15" stroke="rgba(160,180,220,.07)" stroke-width="1.2"></ellipse>
+<ellipse cx="400" cy="340" fill="none" rx="290" ry="12" stroke="rgba(160,180,220,.06)" stroke-width="1"></ellipse>
+<ellipse cx="400" cy="460" fill="none" rx="290" ry="12" stroke="rgba(160,180,220,.06)" stroke-width="1"></ellipse>
+<ellipse cx="400" cy="280" fill="none" rx="230" ry="10" stroke="rgba(160,180,220,.05)" stroke-width=".8"></ellipse>
+<ellipse cx="400" cy="520" fill="none" rx="230" ry="10" stroke="rgba(160,180,220,.05)" stroke-width=".8"></ellipse>
+<ellipse cx="400" cy="220" fill="none" rx="150" ry="8" stroke="rgba(160,180,220,.04)" stroke-width=".7"></ellipse>
+<ellipse cx="400" cy="580" fill="none" rx="150" ry="8" stroke="rgba(160,180,220,.04)" stroke-width=".7"></ellipse>
+<ellipse cx="400" cy="170" fill="none" rx="80" ry="5" stroke="rgba(160,180,220,.03)" stroke-width=".5"></ellipse>
+<ellipse cx="400" cy="630" fill="none" rx="80" ry="5" stroke="rgba(160,180,220,.03)" stroke-width=".5"></ellipse>
+</g>
+<!-- Tilted rings for 3D depth -->
+<ellipse cx="400" cy="400" fill="none" rx="320" ry="140" stroke="rgba(160,180,220,.04)" stroke-width="1" transform="rotate(-30 400 400)"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="320" ry="140" stroke="rgba(160,180,220,.04)" stroke-width="1" transform="rotate(30 400 400)"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="320" ry="200" stroke="rgba(160,180,220,.03)" stroke-width=".7" transform="rotate(-15 400 400)"></ellipse>
+<ellipse cx="400" cy="400" fill="none" rx="320" ry="200" stroke="rgba(160,180,220,.03)" stroke-width=".7" transform="rotate(15 400 400)"></ellipse>
+</svg>
+</div>
+<!-- Pulse rings overlay -->
+<div class="hero-field">
+<div class="hero-ring hr-1"></div>
+<div class="hero-ring hr-2"></div>
+<div class="hero-ring hr-3"></div>
+</div>
+<div class="hero-inner">
+<!-- Event title -->
+<div class="event-title">
+<span class="et-line et-line--left"></span>
+<span class="et-dot">
+<span class="et-wave"></span>
+<span class="et-wave"></span>
+<span class="et-wave"></span>
+</span>
+<h2 class="et-text">A Nova Economia da IA</h2>
+<span class="et-dot">
+<span class="et-wave"></span>
+<span class="et-wave"></span>
+<span class="et-wave"></span>
+</span>
+<span class="et-line et-line--right"></span>
+</div>
+<p class="hero-date hero-reveal hr-d1">25 e 26 de Abril · Online às 13h</p>
+<!-- Terminal animado -->
+<div class="os-terminal hero-reveal hr-d1" id="osTerminal">
+<div class="os-line os-line--cmd"><span class="os-prompt">$</span> <span class="os-typing">initializing ai-first os...</span></div>
+<div class="os-line os-line--mod"><span class="os-check">✓</span> aquisição <span class="os-status">[online]</span></div>
+<div class="os-line os-line--mod"><span class="os-check">✓</span> vendas <span class="os-status">[online]</span></div>
+<div class="os-line os-line--mod"><span class="os-check">✓</span> entrega <span class="os-status">[online]</span></div>
+<div class="os-line os-line--mod"><span class="os-check">✓</span> recorrência <span class="os-status">[online]</span></div>
+<div class="os-line os-line--live"><span>ai operating system</span> <span class="os-live-dot"></span> <span class="os-live-text">LIVE</span></div>
+</div>
+<h1 class="hero-title hero-reveal hr-d2">
+<span class="hero-line-thin">Construa seu</span>
+<span class="hero-line-bold">sistema operacional</span>
+<span class="hero-line-hero"><span class="hero-hl-wrap"><span class="hero-hl-bar"></span><span class="hl-hero">AI-First</span></span></span>
+<span aria-hidden="true" class="hero-glow-text hero-glow-hero">AI-First</span>
+<span class="hero-line-accent">em um fim de semana.</span>
+</h1>
+<p class="hero-sub hero-reveal hr-d3">O modelo por trás de quem está faturando R$100K+/mês com sistemas de IA proprietários. Construa uma vez, instale em múltiplos negócios.</p>
+<div class="hero-cta-group">
+<a class="btn-cta hero-reveal hr-d4" href="javascript:void(0)" onclick="openCapture(event)">
+<span>Garantir meu acesso · R$47</span>
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="16"><polyline points="9,18 15,12 9,6"></polyline></svg>
+</a>
+<p class="hero-micro hero-reveal hr-d5">Acesso imediato · Garantia incondicional</p>
+<div class="lote-bar hero-reveal hr-d5">
+<div class="lote-bar-header"><span class="lote-bar-label">Lote 1</span><span class="lote-bar-status">91% preenchido</span></div>
+<div class="lote-bar-track"><div class="lote-bar-fill" style="--lote-w:91%"></div></div>
+</div>
+</div>
+<!-- Quote -->
+<div class="hero-quote hero-reveal hr-d7 reveal">
+<div class="hq-top">
+<img alt="Kelvin Cleto" class="hq-photo" src="assets/kelvin_434e8fdf5cdc.jpg"/>
+<div class="hq-info">
+<strong>Kelvin Cleto</strong>
+<span>Fundador, Accelera 360</span>
+</div>
+</div>
+<div class="hq-divider"></div>
+<p class="hq-quote">"Estamos diante da maior reorganização econômica da nossa geração. E a maioria ainda tá olhando pra ferramenta."</p>
+</div>
+</div>
+</section>
+<!-- ===== DASHBOARD AO VIVO — Bloomberg Style ===== -->
+<section class="terminal reveal" id="method">
+<!-- Top bar -->
+<div class="term-bar">
+<div class="term-bar-inner">
+<span class="term-live"><span class="term-live-dot"></span>MONITORING</span>
+<span class="term-label">MARKET INTELLIGENCE · AI DISRUPTION INDEX</span>
+<span class="term-time" id="termTime">03:50:15</span>
+</div>
+</div>
+<!-- Data grid -->
+<div class="term-grid">
+<div class="term-cell">
+<div class="term-val" data-count="93" data-suffix="%">—</div>
+<div class="term-desc">dos empregos serão impactados por IA. O que esperavam pra 2032 <strong>está acontecendo agora.</strong></div>
+<div class="term-src">Cognizant / Fortune</div>
+</div>
+<div class="term-cell">
+<div class="term-val" data-count="71447">—</div>
+<div class="term-desc">profissionais de tech demitidos no Q1 de 2026.</div>
+<div class="term-src">Business Today</div>
+</div>
+<div class="term-cell">
+<div class="term-val" data-count="2" data-prefix="$" data-suffix="B">—</div>
+<div class="term-desc">investidos pela Meta pra comprar a Manus AI e <strong>substituir account managers por agentes autônomos.</strong></div>
+<div class="term-src">Meta / Digiday</div>
+</div>
+<div class="term-cell">
+<div class="term-val" data-count="97" data-suffix="%">—</div>
+<div class="term-desc">de redução no custo. Empresas substituem <strong>$1 de trabalho freelancer por $0.03 de IA.</strong></div>
+<div class="term-src">Ramp Economics Lab, 2026</div>
+</div>
+</div>
+<!-- Ticker feed -->
+<div class="term-feed">
+<div class="term-feed-label">FEED</div>
+<div class="term-feed-scroll">
+<div class="term-feed-track">
+<span class="feed-item"><span class="feed-dot"></span><b>Fortune, abr 2026:</b> "FOBO. Fear Of Becoming Obsolete. A condição definidora de 2026."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>Cognizant:</b> "O que esperávamos pra 2032 está acontecendo agora diante dos nossos olhos."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>40%</b> da Block cortados de uma vez. Jack Dorsey: "IA substituiu as funções."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>Forrester</b> sobre agências: "Death sentence pro modelo atual de remuneração."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>Oracle</b> demitiu 30.000 por email às 6h. Capital redirecionado pra IA.</span>
+<span class="feed-item"><span class="feed-dot"></span>Vagas de redação freelance caíram <b>33%</b> após IA generativa.</span>
+<span class="feed-item"><span class="feed-dot"></span><b>McKinsey</b> cortou 5.000 consultores e lançou 12.000 agentes de IA internos.</span>
+<span class="feed-item"><span class="feed-dot"></span><b>Fortune, abr 2026:</b> "FOBO. Fear Of Becoming Obsolete. A condição definidora de 2026."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>Cognizant:</b> "O que esperávamos pra 2032 está acontecendo agora diante dos nossos olhos."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>40%</b> da Block cortados de uma vez. Jack Dorsey: "IA substituiu as funções."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>Forrester</b> sobre agências: "Death sentence pro modelo atual de remuneração."</span>
+<span class="feed-item"><span class="feed-dot"></span><b>Oracle</b> demitiu 30.000 por email às 6h. Capital redirecionado pra IA.</span>
+<span class="feed-item"><span class="feed-dot"></span>Vagas de redação freelance caíram <b>33%</b> após IA generativa.</span>
+<span class="feed-item"><span class="feed-dot"></span><b>McKinsey</b> cortou 5.000 consultores e lançou 12.000 agentes de IA internos.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== O SISTEMA ===== -->
+<section class="system-sect">
+<div aria-hidden="true" class="system-glow"></div>
+<div class="wrap">
+<h2 class="sect-h2 system-h2 reveal">A <span class="hl-system">infraestrutura</span> completa do seu negócio</h2>
+<p class="sect-sub reveal">Oferta, conteúdo, vendas, dados. Um sistema de IA que opera tudo.</p>
+<div class="system-grid">
+<div class="system-card">
+<div class="system-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 48 48">
+<path d="M24 6 L42 15 L42 33 L24 42 L6 33 L6 15 Z"></path>
+<path d="M24 6 L24 42"></path>
+<path d="M6 15 L42 15"></path>
+<path d="M6 33 L42 33"></path>
+</svg>
+</div>
+<h3>Ofertas de alto valor</h3>
+<p>Ofertas de R$20K-100K+ estruturadas como infraestrutura instalável. Setup + recorrência, preço sobre resultado.</p>
+</div>
+<div class="system-card">
+<div class="system-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 48 48">
+<circle cx="24" cy="14" r="5"></circle>
+<path d="M14 38 C14 30 18 25 24 25 C30 25 34 30 34 38"></path>
+<circle cx="10" cy="18" r="3.5"></circle>
+<path d="M3 38 C3 32 5 28 10 28 C12 28 14 29 15 31"></path>
+<circle cx="38" cy="18" r="3.5"></circle>
+<path d="M33 31 C34 29 36 28 38 28 C43 28 45 32 45 38"></path>
+</svg>
+</div>
+<h3>Funcionários de IA</h3>
+<p>Funcionários especializados com memória e contexto do negócio. Pesquisa, operações, follow-up, relatórios executados em paralelo.</p>
+</div>
+<div class="system-card">
+<div class="system-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 48 48">
+<circle cx="24" cy="18" r="6"></circle>
+<path d="M12 40 C12 32 17 28 24 28 C31 28 36 32 36 40"></path>
+<circle cx="38" cy="12" fill="currentColor" r="3" stroke="none"></circle>
+</svg>
+</div>
+<h3>Vendedores autônomos</h3>
+<p>Qualificam leads, tratam objeções e agendam calls 24/7. No WhatsApp, chat ou ligação.</p>
+</div>
+<div class="system-card">
+<div class="system-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 48 48">
+<path d="M12 8 L30 8 L38 16 L38 40 L12 40 Z"></path>
+<path d="M30 8 L30 16 L38 16"></path>
+<line x1="18" x2="32" y1="22" y2="22"></line>
+<line x1="18" x2="32" y1="28" y2="28"></line>
+<line x1="18" x2="26" y1="34" y2="34"></line>
+</svg>
+</div>
+<h3>Conteúdo &amp; criativos</h3>
+<p>Copy, anúncios, VSLs, landing pages e emails gerados no contexto do cliente em minutos.</p>
+</div>
+<div class="system-card">
+<div class="system-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 48 48">
+<path d="M8 40 L8 8"></path>
+<path d="M8 40 L40 40"></path>
+<polyline points="14,32 22,22 28,28 40,14"></polyline>
+<circle cx="14" cy="32" fill="currentColor" r="1.8"></circle>
+<circle cx="22" cy="22" fill="currentColor" r="1.8"></circle>
+<circle cx="28" cy="28" fill="currentColor" r="1.8"></circle>
+<circle cx="40" cy="14" fill="currentColor" r="1.8"></circle>
+</svg>
+</div>
+<h3>Inteligência de dados</h3>
+<p>Dashboards em tempo real. Cada decisão apoiada em dado, não em intuição.</p>
+</div>
+<div class="system-card">
+<div class="system-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 48 48">
+<path d="M24 6 L40 12 L40 26 C40 34 33 40 24 42 C15 40 8 34 8 26 L8 12 Z"></path>
+<polyline points="17,24 22,29 31,20"></polyline>
+</svg>
+</div>
+<h3>Gestão de clientes</h3>
+<p>Pipeline, contatos e automações num só sistema. Sem múltiplas ferramentas, sem troca de aba.</p>
+</div>
+</div>
+<p class="system-strip">Sem saber programar <span class="system-dot"></span> Sem equipe grande <span class="system-dot"></span> Sem vender hora</p>
+</div>
+</section>
+<!-- ===== O MODELO ===== -->
+<section class="sect oportunidade-sect">
+<div class="wrap">
+<!-- Header -->
+<span class="section-badge reveal">O MODELO</span>
+<h2 class="sect-h2 reveal">Um sistema. Múltiplos negócios.</h2>
+<!-- Two column: texto + card destaque -->
+<div class="oport-grid">
+<div class="oport-text">
+<p>Empresas de todos os tamanhos já estão investindo em IA. O dinheiro circula, mas a maioria trava no meio do caminho. Compra ferramenta e não implementa. Contrata freelancer e não integra. Tecnologia não falta. Falta saber construir o sistema que transforma como o negócio vai operar dali pra frente.</p>
+<p>E é isso que muda o jogo. A nova economia não paga por serviço. Paga por resultado instalado. Quem entende isso, constrói a infraestrutura e instala a transformação. Cobra pelo que gera. E permanece, porque o negócio passa a depender do que foi construído.</p>
+</div>
+<div class="oport-card">
+<div class="oport-card-inner dash-card" id="machineCard">
+<!-- Glow decorativo -->
+<div class="dash-glow"></div>
+<!-- Título do card -->
+<div class="dash-title">Construa uma vez. Instale múltiplas.</div>
+<!-- 3 Stat Cards -->
+<div class="dash-stats">
+<div class="dash-stat">
+<div class="dash-stat-header">
+<svg fill="none" height="14" stroke="var(--blue-b)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline><polyline points="17,6 23,6 23,12"></polyline></svg>
+<span class="dash-stat-label">FATURAMENTO</span>
+</div>
+<div class="dash-stat-value" id="dashFat">R$ 0</div>
+</div>
+<div class="dash-stat">
+<div class="dash-stat-header">
+<svg fill="none" height="14" stroke="var(--blue-b)" stroke-width="2" viewbox="0 0 24 24" width="14"><circle cx="12" cy="12" r="10"></circle><path d="M12,6v6l4,2"></path></svg>
+<span class="dash-stat-label">RECORRÊNCIA</span>
+</div>
+<div class="dash-stat-value dash-stat-value--cyan" id="dashRec">R$ 0<span class="dash-stat-suffix">/mês</span></div>
+</div>
+<div class="dash-stat">
+<div class="dash-stat-header">
+<svg fill="none" height="14" stroke="var(--blue-b)" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="14" rx="2" width="20" x="2" y="7"></rect><path d="M16,7V5a4,4 0 0,0-8,0v2"></path></svg>
+<span class="dash-stat-label">EMPRESAS</span>
+</div>
+<div class="dash-stat-value" id="dashEmpresas">0</div>
+<div class="dash-stat-sub">ativas</div>
+</div>
+</div>
+<!-- Grid de bolinhas — empresas na infraestrutura -->
+<div class="dash-dots">
+<div class="dash-dots-grid" id="dashDotsGrid"><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div></div>
+<div class="dash-dots-legend">
+<span class="dash-legend-item"><span class="dash-legend-dot dash-legend-dot--flash"></span>Instalando</span>
+<span class="dash-legend-item"><span class="dash-legend-dot dash-legend-dot--active"></span>Em operação</span>
+<span class="dash-legend-item"><span class="dash-legend-dot dash-legend-dot--earning"></span>Recorrência</span>
+</div>
+</div>
+<!-- Footer -->
+<div class="dash-footer">
+<span>Setup de alto valor + recorrência mensal por empresa</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sequoia quote — full width destaque -->
+<div class="oport-sequoia">
+<div class="oport-sequoia-inner">
+<div class="oport-sequoia-accent"></div>
+<div class="oport-sequoia-content">
+<blockquote>"Para cada dólar gasto em software, seis são gastos em serviço. A IA vai engolir categorias inteiras de serviço."</blockquote>
+<cite>— Sequoia Capital</cite>
+</div>
+<div class="oport-trillion-box">
+<span class="oport-trillion-num">$67T</span>
+<span class="oport-trillion-label">mercado global de serviços sendo reorganizado agora</span>
+</div>
+</div>
+</div>
+<!-- Colonização + fechamento -->
+<div class="oport-close">
+<div class="oport-final">
+<p>Não é mais uma onda de ferramenta.</p>
+<p>É o início de uma nova geração de empresas.</p>
+<p class="oport-highlight"><strong>E a janela pra se posicionar tá aberta agora.</strong></p>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== CASES ===== -->
+<section class="sect" id="cases">
+<div class="wrap">
+<span class="section-badge reveal">QUEM JÁ SE MOVEU</span>
+<h2 class="sect-h2 reveal">Uma nova economia se inicia.<br/>E quase ninguém se posicionou ainda.</h2>
+<div class="mega-case reveal">
+<span class="mega-tag">NEW YORK TIMES, 2026</span>
+<div class="mega-hero">
+<span class="mega-num">$401M</span>
+<span class="mega-suffix">no primeiro ano</span>
+</div>
+<div class="mega-meta"><span>2 pessoas</span><span>$20K de investimento inicial</span></div>
+<p>Uma empresa de saúde faturou $401M em 12 meses com IA operando aquisição, atendimento e entrega. Projeção de $1.8B pra 2026. Margem líquida 3x maior que a concorrente com 2.400 funcionários.</p>
+<cite>The New York Times, abr 2026</cite>
+</div>
+<p class="small-label reveal">Algumas pessoas já se moveram. Em escalas diferentes, com o mesmo modelo.</p>
+<div class="cases-row reveal">
+<div class="case-card">
+<div class="case-head"><div><strong>Victor Yulo</strong><span>OpusHub</span></div><span class="niche">E-commerce</span></div>
+<div class="case-ab">
+<div class="case-point case-point--before">
+<span class="case-point-label">ANTES</span>
+<span class="case-point-val">R$30K<small>/mês</small></span>
+</div>
+<div class="case-arrow">
+<svg fill="none" height="18" stroke="var(--blue-b)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</div>
+<div class="case-point case-point--after">
+<span class="case-point-label">DEPOIS</span>
+<span class="case-point-val">R$160K<small>/mês</small></span>
+</div>
+</div>
+<p>Sistema de vendas e recompra automática. Instalado em múltiplos e-commerces. Roda 24/7.</p>
+</div>
+<div class="case-card">
+<div class="case-head"><div><strong>Matheus Motta</strong><span>ZielMed</span></div><span class="niche">Saúde</span></div>
+<div class="case-ab">
+<div class="case-point case-point--before">
+<span class="case-point-label">ANTES</span>
+<span class="case-point-val">R$12K<small>/mês</small></span>
+</div>
+<div class="case-arrow">
+<svg fill="none" height="18" stroke="var(--blue-b)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</div>
+<div class="case-point case-point--after">
+<span class="case-point-label">DEPOIS</span>
+<span class="case-point-val">R$140K<small>/mês</small></span>
+</div>
+</div>
+<p>Infraestrutura de onboarding e gestão para clínicas. O sistema roda sem ele.</p>
+</div>
+<div class="case-card">
+<div class="case-head"><div><strong>Victor Boso</strong><span>CopeOS</span></div><span class="niche">Clínicas</span></div>
+<div class="case-ab">
+<div class="case-point case-point--before">
+<span class="case-point-label">ANTES</span>
+<span class="case-point-val">R$20K<small>/mês</small></span>
+</div>
+<div class="case-arrow">
+<svg fill="none" height="18" stroke="var(--blue-b)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</div>
+<div class="case-point case-point--after">
+<span class="case-point-label">DEPOIS</span>
+<span class="case-point-val">R$240K<small>/mês</small></span>
+</div>
+</div>
+<p>Agendamento inteligente, conversão assistida, gestão de pacientes. Recorrência mensal.</p>
+</div>
+</div>
+<p class="center-note reveal">O que todos têm em comum? <strong>Nenhum focou na ferramenta.</strong></p>
+</div>
+</section>
+<!-- Ticker — Prova social -->
+<div class="ticker">
+<div class="ticker-track">
+<span><b>40+</b> mercados em expansão</span><span class="ts">🌐</span>
+<span><b>+280</b> parceiros operando</span><span class="ts">🌐</span>
+<span><b>R$18M+</b> faturados pelo ecossistema</span><span class="ts">🌐</span>
+<span><b>300+</b> ofertas testadas</span><span class="ts">🌐</span>
+<span><b>R$1.1M+</b> investidos só em 2025</span><span class="ts">🌐</span>
+<span><b>40+</b> mercados em expansão</span><span class="ts">🌐</span>
+<span><b>+280</b> parceiros operando</span><span class="ts">🌐</span>
+<span><b>R$18M+</b> faturados pelo ecossistema</span><span class="ts">🌐</span>
+<span><b>300+</b> ofertas testadas</span><span class="ts">🌐</span>
+<span><b>R$1.1M+</b> investidos só em 2025</span><span class="ts">🌐</span>
+<span><b>40+</b> mercados em expansão</span><span class="ts">🌐</span>
+<span><b>+280</b> parceiros operando</span><span class="ts">🌐</span>
+<span><b>R$18M+</b> faturados pelo ecossistema</span><span class="ts">🌐</span>
+<span><b>300+</b> ofertas testadas</span><span class="ts">🌐</span>
+<span><b>R$1.1M+</b> investidos só em 2025</span><span class="ts">🌐</span>
+</div>
+</div>
+<!-- ===== CTA BREAK ===== -->
+<section class="break-sect">
+<div class="wrap">
+<div class="word-reveal reveal" id="wordReveal">
+<span>Você</span> <span>para</span> <span>de</span> <span>fazer</span> <span>o</span> <span>trabalho.</span><br/>
+<span>Passa</span> <span>a</span> <span>ser</span> <mark class="wr-mark"><span>dono</span> <span>do</span> <span>sistema</span> <span>que</span> <span>executa.</span></mark>
+</div>
+<!-- Constellation Diagram -->
+<div class="constellation-wrap reveal">
+<div class="constellation-box">
+<svg class="constellation-svg" id="constellationSvg" viewbox="0 0 700 700">
+<defs>
+<radialgradient cx="50%" cy="50%" id="cGlow" r="50%"><stop offset="0%" stop-color="#1065E3" stop-opacity=".2"></stop><stop offset="50%" stop-color="#1065E3" stop-opacity=".04"></stop><stop offset="100%" stop-color="#1065E3" stop-opacity="0"></stop></radialgradient>
+<radialgradient cx="50%" cy="50%" id="nGlow" r="50%"><stop offset="0%" stop-color="#1065E3" stop-opacity=".15"></stop><stop offset="100%" stop-color="#1065E3" stop-opacity="0"></stop></radialgradient>
+<filter id="gB1"><fegaussianblur stddeviation="8"></fegaussianblur></filter>
+<filter id="gB2"><fegaussianblur stddeviation="20"></fegaussianblur></filter>
+<circle cx="350" cy="350" fill="none" id="flowPath" r="220"></circle>
+</defs>
+<circle cx="350" cy="350" fill="url(#cGlow)" r="280"></circle>
+<circle cx="350" cy="350" fill="none" r="220" stroke="rgba(64,144,247,.2)" stroke-width="1.5"></circle>
+<circle cx="350" cy="350" fill="none" filter="url(#gB1)" r="220" stroke="rgba(64,144,247,.08)" stroke-width="4"></circle>
+<line class="spoke" stroke="rgba(64,144,247,.18)" stroke-dasharray="4 8" stroke-width="1" x1="350" x2="160" y1="350" y2="240"></line>
+<line class="spoke" stroke="rgba(64,144,247,.18)" stroke-dasharray="4 8" stroke-width="1" x1="350" x2="350" y1="350" y2="130"></line>
+<line class="spoke" stroke="rgba(64,144,247,.18)" stroke-dasharray="4 8" stroke-width="1" x1="350" x2="540" y1="350" y2="240"></line>
+<line class="spoke" stroke="rgba(64,144,247,.18)" stroke-dasharray="4 8" stroke-width="1" x1="350" x2="540" y1="350" y2="460"></line>
+<line class="spoke" stroke="rgba(64,144,247,.18)" stroke-dasharray="4 8" stroke-width="1" x1="350" x2="350" y1="350" y2="570"></line>
+<line class="spoke" stroke="rgba(64,144,247,.18)" stroke-dasharray="4 8" stroke-width="1" x1="350" x2="160" y1="350" y2="460"></line>
+<circle fill="#4090F7" opacity="0" r="2.5"><animatemotion dur="10s" repeatcount="indefinite"><mpath href="#flowPath"></mpath></animatemotion><animate attributename="opacity" dur="10s" repeatcount="indefinite" values="0;.8;.8;0"></animate></circle>
+<circle fill="#44CCFF" opacity="0" r="2"><animatemotion begin="2s" dur="13s" repeatcount="indefinite"><mpath href="#flowPath"></mpath></animatemotion><animate attributename="opacity" begin="2s" dur="13s" repeatcount="indefinite" values="0;.6;.6;0"></animate></circle>
+<circle fill="#1065E3" opacity="0" r="1.5"><animatemotion begin="5s" dur="16s" repeatcount="indefinite"><mpath href="#flowPath"></mpath></animatemotion><animate attributename="opacity" begin="5s" dur="16s" repeatcount="indefinite" values="0;.5;.5;0"></animate></circle>
+<circle fill="#4090F7" opacity="0" r="2"><animatemotion begin="9s" dur="20s" repeatcount="indefinite"><mpath href="#flowPath"></mpath></animatemotion><animate attributename="opacity" begin="9s" dur="20s" repeatcount="indefinite" values="0;.4;.4;0"></animate></circle>
+<circle fill="#44CCFF" opacity="0" r="3"><animatemotion begin="1s" dur="8s" repeatcount="indefinite"><mpath href="#flowPath"></mpath></animatemotion><animate attributename="opacity" begin="1s" dur="8s" repeatcount="indefinite" values="0;.35;.35;0"></animate></circle>
+<g class="center-float">
+<circle cx="350" cy="350" fill="#1065E3" filter="url(#gB2)" opacity=".04" r="95"></circle>
+<circle class="c-pulse" cx="350" cy="350" fill="none" r="72" stroke="#1065E3" stroke-opacity=".15" stroke-width=".5"></circle>
+<g class="globe-spin">
+<circle cx="350" cy="350" fill="rgba(10,10,22,.92)" r="52" stroke="rgba(64,144,247,.35)" stroke-width="1.2"></circle>
+<ellipse cx="350" cy="350" fill="none" rx="52" ry="8" stroke="rgba(64,144,247,.2)" stroke-width=".8"></ellipse>
+<ellipse cx="350" cy="332" fill="none" rx="44" ry="6" stroke="rgba(64,144,247,.12)" stroke-width=".6"></ellipse>
+<ellipse cx="350" cy="368" fill="none" rx="44" ry="6" stroke="rgba(64,144,247,.12)" stroke-width=".6"></ellipse>
+<ellipse cx="350" cy="350" fill="none" rx="10" ry="52" stroke="rgba(64,144,247,.2)" stroke-width=".8"></ellipse>
+<ellipse cx="350" cy="350" fill="none" rx="36" ry="52" stroke="rgba(64,144,247,.12)" stroke-width=".6"></ellipse>
+<ellipse cx="350" cy="350" fill="none" rx="48" ry="52" stroke="rgba(64,144,247,.06)" stroke-width=".5"></ellipse>
+</g>
+<circle cx="350" cy="350" fill="none" filter="url(#gB1)" r="52" stroke="rgba(64,144,247,.1)" stroke-width="3"></circle>
+<circle class="globe-ring-spin" cx="350" cy="350" fill="none" r="60" stroke="rgba(64,144,247,.12)" stroke-dasharray="3 5" stroke-width=".5"></circle>
+</g>
+<text dominant-baseline="central" fill="#fff" font-family="Inter,sans-serif" font-size="12" font-weight="700" letter-spacing="2" opacity=".9" text-anchor="middle" x="350" y="350">AI-NATIVE</text>
+<g class="hex-node" data-idx="0">
+<circle class="hex-glow" cx="160" cy="240" fill="url(#nGlow)" r="60"></circle><circle class="node-orbit" cx="160" cy="240" fill="none" r="48" stroke="rgba(64,144,247,.08)" stroke-dasharray="3 5" stroke-width=".5"></circle><circle class="hex-shape" cx="160" cy="240" fill="rgba(10,10,22,.9)" r="42" stroke="rgba(64,144,247,.25)" stroke-width="1.2"></circle><circle cx="160" cy="240" fill="none" filter="url(#gB1)" r="42" stroke="rgba(64,144,247,.08)" stroke-width="2.5"></circle><circle class="ripple-ring fire" cx="160" cy="240" r="42"></circle>
+<text class="hex-title" dominant-baseline="central" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="160" y="234">Oferta</text>
+<text class="hex-sub" dominant-baseline="central" fill="rgba(107,114,144,.7)" font-family="Manrope,sans-serif" font-size="9" text-anchor="middle" x="160" y="251">Começa aqui</text>
+</g>
+<g class="hex-node" data-idx="1">
+<circle class="hex-glow" cx="350" cy="130" fill="url(#nGlow)" r="60"></circle><circle class="node-orbit" cx="350" cy="130" fill="none" r="48" stroke="rgba(64,144,247,.08)" stroke-dasharray="3 5" stroke-width=".5"></circle><circle class="hex-shape" cx="350" cy="130" fill="rgba(10,10,22,.9)" r="42" stroke="rgba(64,144,247,.25)" stroke-width="1.2"></circle><circle cx="350" cy="130" fill="none" filter="url(#gB1)" r="42" stroke="rgba(64,144,247,.08)" stroke-width="2.5"></circle><circle class="ripple-ring fire" cx="350" cy="130" r="42"></circle>
+<text class="hex-title" dominant-baseline="central" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="350" y="124">Aquisição</text>
+<text class="hex-sub" dominant-baseline="central" fill="rgba(107,114,144,.7)" font-family="Manrope,sans-serif" font-size="9" text-anchor="middle" x="350" y="141">Atrair os certos</text>
+</g>
+<g class="hex-node" data-idx="2">
+<circle class="hex-glow" cx="540" cy="240" fill="url(#nGlow)" r="60"></circle><circle class="node-orbit" cx="540" cy="240" fill="none" r="48" stroke="rgba(64,144,247,.08)" stroke-dasharray="3 5" stroke-width=".5"></circle><circle class="hex-shape" cx="540" cy="240" fill="rgba(10,10,22,.9)" r="42" stroke="rgba(64,144,247,.25)" stroke-width="1.2"></circle><circle cx="540" cy="240" fill="none" filter="url(#gB1)" r="42" stroke="rgba(64,144,247,.08)" stroke-width="2.5"></circle><circle class="ripple-ring fire" cx="540" cy="240" r="42"></circle>
+<text class="hex-title" dominant-baseline="central" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="540" y="234">Venda</text>
+<text class="hex-sub" dominant-baseline="central" fill="rgba(107,114,144,.7)" font-family="Manrope,sans-serif" font-size="9" text-anchor="middle" x="540" y="251">Fechar com processo</text>
+</g>
+<g class="hex-node" data-idx="3">
+<circle class="hex-glow" cx="540" cy="460" fill="url(#nGlow)" r="60"></circle><circle class="node-orbit" cx="540" cy="460" fill="none" r="48" stroke="rgba(64,144,247,.08)" stroke-dasharray="3 5" stroke-width=".5"></circle><circle class="hex-shape" cx="540" cy="460" fill="rgba(10,10,22,.9)" r="42" stroke="rgba(64,144,247,.25)" stroke-width="1.2"></circle><circle cx="540" cy="460" fill="none" filter="url(#gB1)" r="42" stroke="rgba(64,144,247,.08)" stroke-width="2.5"></circle><circle class="ripple-ring fire" cx="540" cy="460" r="42"></circle>
+<text class="hex-title" dominant-baseline="central" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="540" y="454">Onboarding</text>
+<text class="hex-sub" dominant-baseline="central" fill="rgba(107,114,144,.7)" font-family="Manrope,sans-serif" font-size="9" text-anchor="middle" x="540" y="471">Ativar o cliente</text>
+</g>
+<g class="hex-node" data-idx="4">
+<circle class="hex-glow" cx="350" cy="570" fill="url(#nGlow)" r="60"></circle><circle class="node-orbit" cx="350" cy="570" fill="none" r="48" stroke="rgba(64,144,247,.08)" stroke-dasharray="3 5" stroke-width=".5"></circle><circle class="hex-shape" cx="350" cy="570" fill="rgba(10,10,22,.9)" r="42" stroke="rgba(64,144,247,.25)" stroke-width="1.2"></circle><circle cx="350" cy="570" fill="none" filter="url(#gB1)" r="42" stroke="rgba(64,144,247,.08)" stroke-width="2.5"></circle><circle class="ripple-ring fire" cx="350" cy="570" r="42"></circle>
+<text class="hex-title" dominant-baseline="central" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="350" y="564">Entrega</text>
+<text class="hex-sub" dominant-baseline="central" fill="rgba(107,114,144,.7)" font-family="Manrope,sans-serif" font-size="9" text-anchor="middle" x="350" y="581">Resultado real</text>
+</g>
+<g class="hex-node" data-idx="5">
+<circle class="hex-glow" cx="160" cy="460" fill="url(#nGlow)" r="60"></circle><circle class="node-orbit" cx="160" cy="460" fill="none" r="48" stroke="rgba(64,144,247,.08)" stroke-dasharray="3 5" stroke-width=".5"></circle><circle class="hex-shape" cx="160" cy="460" fill="rgba(10,10,22,.9)" r="42" stroke="rgba(64,144,247,.25)" stroke-width="1.2"></circle><circle cx="160" cy="460" fill="none" filter="url(#gB1)" r="42" stroke="rgba(64,144,247,.08)" stroke-width="2.5"></circle><circle class="ripple-ring fire" cx="160" cy="460" r="42"></circle>
+<text class="hex-title" dominant-baseline="central" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="160" y="454">Feedback</text>
+<text class="hex-sub" dominant-baseline="central" fill="rgba(107,114,144,.7)" font-family="Manrope,sans-serif" font-size="9" text-anchor="middle" x="160" y="471">Otimizar e repetir</text>
+</g>
+</svg>
+</div>
+<p class="constellation-caption">Na ponta, entrega resultado. Por trás, IA opera.</p>
+</div>
+<h2 class="break-h2 reveal">Esse é o modelo.</h2>
+<a class="btn-cta reveal" href="javascript:void(0)" onclick="openCapture(event)">
+<span>Garantir meu acesso · R$47</span>
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="16"><polyline points="9,18 15,12 9,6"></polyline></svg>
+</a>
+</div>
+</section>
+<!-- ===== WORKSHOP ===== -->
+<section class="sect sect--fade" id="workshop">
+<div class="wrap">
+<span class="section-badge reveal">O WORKSHOP</span>
+<h2 class="sect-h2 reveal">O que você vai ver por dentro.</h2>
+<div class="timeline">
+<div class="timeline-step reveal">
+<div class="timeline-num">01</div>
+<div class="timeline-content">
+<h3>Onde está o dinheiro</h3>
+<ul>
+<li>Nichos que pagam R$20K-100K+ por infraestrutura</li>
+<li>Mapeamento de gaps de alto valor</li>
+<li>Análise de viabilidade comercial e técnica</li>
+<li>Timing de entrada no mercado</li>
+</ul>
+</div>
+</div>
+<div class="timeline-step reveal">
+<div class="timeline-num">02</div>
+<div class="timeline-content">
+<h3>Oferta e posicionamento</h3>
+<ul>
+<li>Estruturação de instalação (setup + recorrência)</li>
+<li>Precificação para vendas high-ticket</li>
+<li>Posicionamento como infraestrutura crítica</li>
+<li>Contratos com alta retenção</li>
+</ul>
+</div>
+</div>
+<div class="timeline-step reveal">
+<div class="timeline-num">03</div>
+<div class="timeline-content">
+<h3>Go-to-market e aquisição</h3>
+<ul>
+<li>Estratégia de aquisição validada em 40+ mercados</li>
+<li>Processo de pré-venda que educa antes da call</li>
+<li>Framework de conversão para contratos de alto valor</li>
+<li>Primeiros contratos fechados</li>
+</ul>
+</div>
+</div>
+<div class="timeline-step reveal">
+<div class="timeline-num">04</div>
+<div class="timeline-content">
+<h3>Arquitetura de entrega e escala</h3>
+<ul>
+<li>Desenho das camadas operacionais: Aquisição, Conversão, Operação</li>
+<li>Fluxos que eliminam dependência de execução manual</li>
+<li>Estrutura para operar sem presença constante</li>
+<li>Expansão automática para múltiplos clientes</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Entregáveis integrados -->
+<div class="workshop-extras reveal">
+<p class="extras-label reveal">Quem participar ao vivo também acessa</p>
+<div class="bento-grid">
+<div class="bento-item bento-item--featured reveal">
+<div class="bento-icon-wrap"><svg fill="none" height="28" stroke="var(--cyan)" stroke-width="1.5" viewbox="0 0 24 24" width="28"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path><path d="M11 8v6M8 11h6"></path></svg></div>
+<h4>Agente de inteligência de oferta</h4>
+<p>Define seu nicho ideal, identifica gaps lucrativos e estrutura sua oferta.</p>
+</div>
+<div class="bento-item reveal">
+<div class="bento-icon-wrap"><svg fill="none" height="28" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="28"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg></div>
+<h4>Simulador de Lucro</h4>
+<p>Visualize quanto pode faturar com setup + recorrência no seu nicho.</p>
+</div>
+<div class="bento-item reveal">
+<div class="bento-icon-wrap"><svg fill="none" height="28" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="28"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line></svg></div>
+<h4>Modelo de oferta validado</h4>
+<p>A estrutura pra montar, precificar e vender infraestruturas de IA por mais de R$20K.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== PRA QUEM É ===== -->
+<section class="sect">
+<div class="wrap">
+<span class="section-badge reveal">PRA QUEM É</span>
+<div class="who-list">
+<div class="who-item reveal">
+<div class="who-item-head"><svg fill="none" height="20" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="20"><rect height="14" rx="2" width="20" x="2" y="3"></rect><path d="M8 21h8M12 17v4"></path></svg><h4>Tem um negócio e sente o teto.</h4></div>
+<p>Mais clientes, mais operação, mais caos. A margem continua a mesma. O problema não é esforço. É o modelo.</p>
+</div>
+<div class="who-item reveal">
+<div class="who-item-head"><svg fill="none" height="20" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><h4>Vende hora ou projeto.</h4></div>
+<p>Cobra R$2K-10K por entrega e sabe que tem um teto. Quer montar algo que passe de R$100K/mês sem depender de mais gente.</p>
+</div>
+<div class="who-item reveal">
+<div class="who-item-head"><svg fill="none" height="20" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="20"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><h4>Já tem habilidade técnica com IA.</h4></div>
+<p>Monta agentes, automações, sistemas. Falta visão de onde aplicar, como precificar por resultado e como transformar isso em negócio.</p>
+</div>
+<div class="who-item reveal">
+<div class="who-item-head"><svg fill="none" height="20" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="20"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg><h4>Consome conteúdo, testa ferramentas, faz cursos.</h4></div>
+<p>Ainda não fez dinheiro de verdade com IA. O que falta não é mais conhecimento. É a estrutura certa.</p>
+</div>
+<div class="who-item reveal">
+<div class="who-item-head"><svg fill="none" height="20" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="20"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><h4>Trabalha pra alguém e quer construir algo próprio.</h4></div>
+<p>Vê a IA mudando tudo ao redor. Quer um plano real pra transição, não mais um curso.</p>
+</div>
+</div>
+<p class="not-for reveal"><strong>Não é para você se</strong> procura mais uma ferramenta, quer teoria sem execução, ou acredita que o problema é técnico.</p>
+</div>
+</section>
+<!-- ===== INSTRUTOR ===== -->
+<section class="sect sect--fade">
+<div class="wrap">
+<span class="section-badge reveal">QUEM ENSINA</span>
+<div class="instr reveal">
+<div class="instr-photo"><img alt="Kelvin Cleto" class="instr-img" src="assets/kelvin-full_96c6200c33f5.jpg"/></div>
+<div class="instr-body">
+<h2 class="sect-h2 reveal" style="text-align:left">R$65 milhões faturados. 12 anos empreendendo. Agora, na linha de frente da nova economia.</h2>
+<p class="instr-name"><strong>Kelvin Cleto</strong> · Fundador, Accelera 360</p>
+<p>Engenheiro da computação. Programador desde os 16. Fundou a <strong>General Claims</strong>, uma das principais Insurtechs do Brasil, e levou até o exit.</p>
+<p>Em 2025, fundou a Accelera 360 e investiu mais de <strong>R$1.1 milhão</strong> validando playbooks e inteligência em 40+ mercados. Hoje, mais de 280 empreendedores já operam esse modelo.</p>
+<div class="kpi-row">
+<div><strong>300+</strong><span>ofertas testadas</span></div>
+<div><strong>R$1.1M+</strong><span>investido em inteligência de mercado</span></div>
+<div><strong>+280</strong><span>parceiros operando</span></div>
+</div>
+<blockquote>"Já vi ondas muito grandes, e essa com certeza é a maior delas. Quem se posicionar agora vai capturar o que tá sendo redistribuído."</blockquote>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== PRICING ===== -->
+<section class="sect" id="pricing">
+<div class="wrap center-text">
+<h2 class="sect-h2 reveal">Quanto custa?</h2>
+<p class="pricing-sub reveal">Esse valor existe pra garantir que só entre quem está realmente pronto pra mudar de modelo. Não é desconto. É filtro.</p>
+<div class="price-box reveal">
+<div class="lote-bar lote-bar--compact">
+<div class="lote-bar-header"><span class="lote-bar-label">Lote 1</span><span class="lote-bar-status">91% preenchido</span></div>
+<div class="lote-bar-track"><div class="lote-bar-fill" style="--lote-w:91%"></div></div>
+</div>
+<span class="price-ey">O que você acessa por</span>
+<div class="price-hero"><span class="price-rs">R$</span><span class="price-val">47</span></div>
+<ul class="price-list">
+<li>O modelo que nossos parceiros usam pra fechar contratos de R$20K-100K+</li>
+<li>O passo a passo: nicho, oferta, clientes e entrega com infraestrutura</li>
+<li>Cases reais de quem fez a transição de serviço pra sistema</li>
+</ul>
+<p class="price-roi">Um único contrato fechado com esse modelo paga o workshop <strong>mais de 400 vezes</strong>.</p>
+<a class="btn-cta btn-cta--full" href="javascript:void(0)" onclick="openCapture(event)">
+<span>Garantir meu acesso · R$47</span>
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="16"><polyline points="9,18 15,12 9,6"></polyline></svg>
+</a>
+<p class="hero-micro">Satisfação garantida · Acesso imediato</p>
+</div>
+<div class="guarantee-box reveal">
+<strong><svg class="guarantee-icon" fill="none" height="20" stroke="var(--blue-b)" stroke-width="1.5" viewbox="0 0 24 24" width="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4" stroke="var(--cyan)" stroke-width="2"></path></svg> Garantia de 7 dias</strong>
+<p>Se ao final do workshop você não tiver um plano claro de como aplicar esse modelo no seu contexto, devolvemos 100%. Sem perguntas.</p>
+</div>
+</div>
+</section>
+<!-- ===== FAQ ===== -->
+<section class="sect sect--fade">
+<div class="wrap center-text">
+<h2 class="sect-h2 reveal">Perguntas frequentes</h2>
+<div class="faq reveal">
+<details class="faq-i"><summary>O que exatamente acontece no workshop?</summary><p>Dois dias online e ao vivo. Abrimos o modelo de negócio, os dados de mercado e o passo a passo pra fechar contratos de alto valor com infraestrutura de IA.</p></details>
+<details class="faq-i"><summary>Preciso saber programar?</summary><p>Não. O workshop é sobre visão de negócio e modelo, não sobre código ou ferramenta.</p></details>
+<details class="faq-i"><summary>Não tenho experiência com IA. Consigo acompanhar?</summary><p>Sim. Muita gente que opera com a gente hoje começou do zero em IA. O que importa é entender de negócio.</p></details>
+<details class="faq-i"><summary>Já tenho agência ou consultoria. Serve pra mim?</summary><p>A maioria de quem opera com a gente veio de agência ou consultoria. Faltava o modelo que escala sem multiplicar equipe e caos.</p></details>
+<details class="faq-i"><summary>Já vendo projetos de IA mas não consigo escalar.</summary><p>É um dos perfis mais comuns. O workshop mostra por que vender projeto por projeto não escala e como migrar pra infraestrutura com recorrência.</p></details>
+<details class="faq-i"><summary>Qual a diferença de um curso de IA?</summary><p>Cursos ensinam ferramenta. Aqui se abre o modelo de negócio: onde está o dinheiro, como montar a oferta, como precificar sobre resultado.</p></details>
+<details class="faq-i"><summary>R$47 é o preço final?</summary><p>Sim. Acesso completo aos dois dias. O valor pode mudar conforme a data se aproxima.</p></details>
+<details class="faq-i"><summary>E se eu não gostar?</summary><p>Garantia de 7 dias. Devolvemos 100%. Sem perguntas.</p></details>
+<details class="faq-i"><summary>Vai ficar gravado?</summary><p>O workshop é ao vivo e a experiência foi pensada pra quem participa em tempo real. A gravação não está inclusa no ingresso, mas você terá a opção de adquirir o acesso à gravação completa direto no checkout.</p></details>
+</div>
+</div>
+</section>
+<!-- ===== FINAL CTA ===== -->
+<section class="final-sect">
+<div class="final-conic"></div>
+<div class="atmo-glow atmo-1" style="opacity:.5"></div>
+<div class="wrap center-text" style="position:relative;z-index:2">
+<p class="final-p reveal">Uma nova geração de empreendedores está surgindo.</p>
+<p class="final-sub reveal">Não por dominar ferramentas. Mas por saber operar em um novo mundo.</p>
+<h2 class="final-h2 reveal">Ocupar seu espaço não é mais uma escolha.<br/><span class="final-accent">É sobrevivência.</span></h2>
+<p class="final-meta">25 e 26 de Abril · Online às 13h</p>
+<a class="btn-cta btn-cta--lg reveal" href="javascript:void(0)" onclick="openCapture(event)">
+<span>Garantir meu acesso · R$47</span>
+</a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="wrap footer-inner">
+<span class="footer-brand">🌐 Accelera 360</span>
+<p>© 2026 Accelera 360. Todos os direitos reservados.</p>
+</div>
+</footer>
+<!-- Sticky CTA bar -->
+<div class="sticky-cta" id="stickyCta">
+<div class="sticky-cta-inner">
+<span class="sticky-cta-info">A Nova Economia da IA · R$47</span>
+<a class="sticky-cta-btn" href="javascript:void(0)" onclick="openCapture(event)">Garantir acesso</a>
+</div>
+</div>
+<!-- Modal de captura -->
+<div class="modal-overlay" id="captureModal">
+<div class="modal-card">
+<button class="modal-close" id="modalClose">×</button>
+<h3 class="modal-title">Garanta seu acesso</h3>
+<p class="modal-sub">Preencha abaixo pra liberar o checkout.</p>
+<form id="captureForm">
+<input class="modal-input" name="nome" placeholder="Seu nome" required="" type="text"/>
+<input class="modal-input" name="email" placeholder="Seu melhor email" required="" type="email"/>
+<input class="modal-input" id="whatsappInput" inputmode="numeric" maxlength="15" name="whatsapp" pattern="\(\d{2}\)\s?\d{4,5}-?\d{4}" placeholder="(00) 00000-0000" required="" type="tel"/>
+<button class="btn-cta btn-cta--full modal-submit" type="submit">
+<span>Continuar pro checkout</span>
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="16"><polyline points="9,18 15,12 9,6"></polyline></svg>
+</button>
+</form>
+<p class="modal-privacy">Seus dados estão seguros. Não compartilhamos com terceiros.</p>
+</div>
+</div>
+<script src="assets/script_235c0e6865e9.js"></script>
+</body></html>

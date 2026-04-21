@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #f8f9fa;
+  --brand-blue: #0066ff;
+  --brand-blue-muted: #1e3a8a;
+  --accent-gold: #ffd700;
+  
+  --font-inter: var(--font-inter);
+  --font-outfit: var(--font-outfit);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-muted: var(--brand-blue-muted);
+  --color-accent-gold: var(--accent-gold);
+  
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-outfit);
+}
+
+@layer base {
+  * {
+    @apply border-white/10;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
+  }
+}

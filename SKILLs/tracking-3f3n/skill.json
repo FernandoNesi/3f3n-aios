@@ -1,0 +1,82 @@
+{
+  "skill_id": "tracking-3f3n-v1",
+  "version": "1.0.0",
+  "taxonomy": "AÇÃO EM API",
+  "logic": "Zero-Shot CoT + ReAct",
+  "owner": "AI OS 3F3N — Squad de Performance",
+  "grounding_level": "LEVEL 1 Foundation",
+  "parameters": {
+    "ga4_id": {
+      "type": "string",
+      "required": true,
+      "example": "G-XXXXXXXXXX",
+      "description": "ID da propriedade GA4"
+    },
+    "pixel_id": {
+      "type": "string",
+      "required": true,
+      "example": "1234567890",
+      "description": "ID do Meta Pixel"
+    },
+    "variation": {
+      "type": "enum",
+      "values": ["A", "B"],
+      "required": true,
+      "description": "Variação da Lâmina em teste para Closed-Loop Learning"
+    },
+    "archetype": {
+      "type": "string",
+      "required": true,
+      "example": "dor_cronica",
+      "description": "Arquétipo de Paciente alvo da campanha"
+    },
+    "webhook_url": {
+      "type": "url",
+      "required": true,
+      "example": "https://n8n.3f3n.io/webhook/lead-capture",
+      "description": "Endpoint n8n para disparo server-side"
+    },
+    "utm_ttl_days": {
+      "type": "integer",
+      "required": false,
+      "default": 30,
+      "description": "TTL da persistência de UTMs em localStorage"
+    }
+  },
+  "constraints": [
+    "Scripts devem ser async ou defer",
+    "Não bloquear o render principal (LCP < 2.5s)",
+    "Persistir UTMs em localStorage por utm_ttl_days",
+    "Disparar 'conversion' apenas no sucesso do webhook n8n",
+    "Payload server-side inclui variation e archetype obrigatoriamente",
+    "Nomes de eventos seguem Meta Standard Events + GA4 Recommended Events"
+  ],
+  "outputs": {
+    "snippet_html": "Bloco <head> pronto para colar",
+    "n8n_payload": "Schema JSON do webhook server-side",
+    "validation_report": "Checklist 3 Vetores + LCP projetado"
+  },
+  "closed_loop_contract": {
+    "event_schema": {
+      "event_name": "string (Meta Standard)",
+      "timestamp": "ISO-8601",
+      "variation": "A | B",
+      "archetype": "string",
+      "utms": {
+        "source": "string",
+        "medium": "string",
+        "campaign": "string",
+        "content": "string",
+        "term": "string"
+      },
+      "page": "string",
+      "session_id": "uuid"
+    }
+  },
+  "references": [
+    "references/utm-persistence.js",
+    "references/ga4-measurement-protocol.md",
+    "references/meta-pixel-events.md",
+    "references/neurodesign-lcp-checklist.md"
+  ]
+}

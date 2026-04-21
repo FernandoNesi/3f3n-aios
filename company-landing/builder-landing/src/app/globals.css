@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #070C14;
+  --color-foreground: #ffffff;
+  
+  --color-brand-blue: #1065E3;
+  --color-brand-blue-light: #4090F7;
+  --color-brand-cyan: #44CCFF;
+  --color-brand-green: #22c55e;
+  
+  --font-sans: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui;
+  --font-heading: var(--font-inter), var(--font-outfit), ui-sans-serif, system-ui;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  
+  @keyframes shimmer {
+    from { background-position: 200% center; }
+    to { background-position: -200% center; }
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-brand-blue/30;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+  
+  .glass-dark {
+    @apply backdrop-blur-xl bg-black/40 border border-white/5;
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 20px rgba(16, 101, 227, 0.4), 0 0 40px rgba(16, 101, 227, 0.1);
+  }
+
+  .btn-conic {
+    background: conic-gradient(at 53.6% -18.1%, #4090F7 108deg, #1065E3 169.2deg, #162436 262.8deg);
+    box-shadow: 0 0 50px rgba(16, 101, 227, 0.25), 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .hero-shimmer {
+    background: linear-gradient(90deg, #ffffff 0%, #4090F7 50%, #ffffff 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 6s linear infinite;
+  }
+}
